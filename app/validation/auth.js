@@ -27,21 +27,21 @@ const registerValidation = data => {
 
 
 const loginValidation = data => {
-                const schema = {
-                                     email: Joi.string()
-                                               .min(6)
-                                               .optional()
-                                               .allow('')
-                                               .required()
-                                               .email(),
-                                     password: Joi.string()
-                                                  .min(6)
-                                                  .optional()
-                                                  .allow('')
-                                                  .required()
+        const schema = Joi.object().keys({
+                                email: Joi.string()
+                                           .min(6)
+                                           .optional()
+                                           .allow('')
+                                           .required()
+                                           .email(),
+                                password: Joi.string()
+                                            .min(6)
+                                            .optional()
+                                            .allow('')
+                                            .required()
 
-                                 };
-                return Joi.validate(data, schema);
+                                 });
+                        return schema.validate(data.schema);
         };
 
 
