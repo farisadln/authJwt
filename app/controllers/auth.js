@@ -40,13 +40,13 @@ exports.login = async (req, res) => {
     const { error } = loginValidation(req.body);
     if( error ) return res.status(400).send(error.details[0].message);
 
-        const email = await User.findOne({ where:
+        const user = await User.findOne({ where:
                                             { email: req.body.email }
                                         });
 
-        if ( !email ) return res.status(400).send('Email is not found');
+        if ( !user ) return res.status(400).send('Email is not found');
 
-            const validPass = await bcrypt.compare(req.body.password, email.password);
+            const validPass = await bcrypt.compare(req.body.password, user.password);
             if ( !validPass ) return res.status(400).send('Invalid password');
 
             //Jwt auth
