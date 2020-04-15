@@ -1,6 +1,4 @@
-const verify = require('./verifyToken')
-
-exports.get = verify, async (req, res) => {
+exports.getData =   (req, res) => {
 
     res.json({
         data : {

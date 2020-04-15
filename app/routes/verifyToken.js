@@ -1,12 +1,12 @@
 module.exports = app => {
-
-    let data = require('../controllers/data');
+    const verify = require('../validation/verifyToken');
+    let dumy = require('../controllers/dumy');
 
     let router = require("express").Router();
 
-    router.get('/', data.get);
+    router.get('/',verify, dumy.getData);
 
    
     app.use('/api', router);
 
-}
+};
